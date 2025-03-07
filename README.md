@@ -113,4 +113,4 @@ En este caso, cada componente será ejectudo por medio de docker compose.
 
 # Diagrama de despliegue
 
-
+![](./assets/solucion_fase1-despliegue.png)
