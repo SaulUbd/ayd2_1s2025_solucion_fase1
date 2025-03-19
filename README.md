@@ -1,3 +1,40 @@
+# Orden a seguir
+En orden, para que su solución sea consistente y correcta, deberían hacer las sección en el siguiente orden.
+
+Cada sección se toma del resultado de la anterior.
+1. Core del negocio
+2. CDU primera descomposición
+    - La primera descomposición solo tiene los CDU de negocio
+3. CDU expandidos
+    - Hay que hacer un diagrama por cada CDU de negocio
+    - Por cada CDU en los diagramas expandidos, se redacta el detalle/descripción
+    - Hay que identificar cada CDU (eg. CDU001, CDU002, etc.)
+4. Requerimientos funcionales y no funcionales
+    - Los requerimientos funcionales y no funcionales se hacen a partir de los CDU que desarrollaron en los diagramas expandidos
+    - Hay que identificarlos (eg. RF001, RNF001, etc.)
+5. Matrices de trazabilidad
+    - Se hacen a partir de los CDU expandidos y los requerimientos
+    - Todos los requerimientos/CDU deberían tener al menos una relación
+6. Estilos arquitectónicos
+    - Tienen que redactar que partes del sistema tendrán X o Y estilo arquitectónico y por qué
+    - Sean especificos
+7. Diagrama de bloques
+    - Hacerlo pensando en que alguien no-tecnico pueda entenderlo
+    - Usar imaágenes y evitar usar lenguaje técnico.
+8. Diagrama de despliegue
+    - Debería ser la descripción tećnica del diagrama de bloques. La idea es que ambos diagramas describan la arquitectura del sistema
+    - Si es muy grande, subanlo como .svg para que se pueda apreciar el detalle
+    - Agregar los modelos para las entidades en la base de datos con relación a los componentes que los usen
+9. Diagrama ER
+    - Del diagrama de despliegue pudieronn sacar los modelos para las entidades, ahora con eso ya pueden tener una mejor idea de como hacer su diagrama ER
+    - Si van a usar una db no-sql, no se hace diagrama ER pero sí tienen que hacer su diseño en base a consultas. Y describan los documentos en la colección
+10. Patrones de diseño
+    - Ya que pensaron toda su arquitectura y saben como está distribuida, ya pueden pensar en donde usar los patrónes de diseño.
+    - Describan donde y por qué están usando el patrón
+    - Hagan el diagrama de clases para el patrón
+        - Usen las relaciones correctas entre clases
+    - Son 5 patrones mínimo
+
 # Core del negocio
 
 Librería Don Hector se especializa en la venta de libros y artículos de libería al por menor, tanto de forma física como por envios a domicilio.
