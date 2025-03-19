@@ -94,19 +94,29 @@ listado:
     3. Se agrega la imagen de portada del libro
     4. Se envian los datos al sistema
 - **Escenario Alternativo:**
-    - El libro no cuenta con una imagen de portada y puede dejarse vacia
+    3a. El libro no cuenta con una imagen de portada y puede dejarse vacia
+    4. Se envian los datos al sistema
+- **Escenario Alternativo:**
+    4a. El libro ya existe en el sistema
+    5. Los datos son rechazados por el sistema
 
 # Requerimientos funcionales generales
 
 ## Requerimientos funcionales
 
-- RF1: Los supervisores pueden agregar nuevos libros al sistema
-- RF2: Los empleados pueden realizar ventas a través del sistema
-- RF3: Al realizar una venta exitosa, se genera una factura automáticamente y se almacena en el sistema
-- RF4: Los clientes pueden buscar libros a través de un buscador dentro del portal web
-- RF5: Los clientes pueden registrarse en el portal web
-- RF6: Los clientes pueden iniciar sersión en el portal web
-- RF7: Los clientes pueden comprar libros a través del portal web
+- RF1: Los supervisores pueden agregar libros al sistema
+- RF2: Los supervisores pueden eliminar libros en el sistema
+- RF3: Los supervisores pueden modificar libros en el sistema
+- RF4: Los supervisores pueden agregar productos al sistema
+- RF5: Los supervisores pueden eliminar productos en el sistema
+- RF6: Los supervisores pueden modificar productos en el sistema
+- RF7: Se pueden buscar libros en el sistema
+- RF8: Se pueden buscar productos en el sistema
+- RF9: Se pueden agregar imágenes a los productos
+.
+.
+.
+y aquí van todo el resto a partir de los CDU
 
 ## Requerimientos no funcionales
 
@@ -127,6 +137,10 @@ listado:
 ### Disponibilidad
 - RNF9: El sistema debe tener una disponibilidad del 99,99% anual
 - RNF10: Los despliegues de nuevas funcionalidades no deben interrumpir a los usuarios en la plataforma
+.
+.
+.
+Hacer el resto con los CDU
 
 # Matrices trazabilidad
 Solamente contienen los CDU en este documento. Las reales tendrían todos los requerimientos y CDU*
@@ -142,37 +156,45 @@ Solamente contienen los CDU en este documento. Las reales tendrían todos los re
 
 ## Stakeholders vs Requerimientos
 
-| stakeholder | RF1 | RF2 | RF3 | RF4 | RF5 | RF6 | RF7 | ... |
-|-------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Gerente     |     |     |     |     |     |     |     |     |
-| Supervisor  |  x  |     |     |     |     |     |     |     |
-| Empleado    |     |  x  |  x  |     |     |     |     |     |
-| Cliente     |     |     |     |  x  |  x  |  x  |  x  |     |
+| stakeholder | RF1 | RF2 | RF3 | RF4 | RF5 | RF6 | RF7 | RF8 | RF9 | ... |
+|-------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Gerente     |     |     |     |     |     |     |     |     |     |     |
+| Supervisor  |  x  |  x  |  x  |  x  |  x  |  x  |  x  |  x  |  x  |     |
+| Empleado    |     |     |     |     |     |     |     |     |     |     |
+| Cliente     |     |     |     |     |     |     |     |     |     |     |
 
 ## Requerimientos vs CDU
 
 | Requerimento | CDU-001 | CDU-002 | CDU-003 | CDU-004 | CDU-005 | CDU-006 | CDU-007 | CDU-008 | CDU-009 | ... |
 |--------------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|---------|:---:|
 | RF1          |         |    x    |         |         |         |         |         |         |         |     |
-| RF2          |         |         |         |         |         |         |         |         |         |     |
-| RF3          |         |         |         |         |         |         |         |         |         |     |
-| RF4          |         |         |    x    |         |         |         |         |         |         |     |
-| RF5          |         |         |         |         |         |         |         |         |         |     |
-| RF6          |         |         |         |         |         |         |         |         |         |     |
-| RF7          |         |         |         |         |         |         |         |         |         |     |
+| RF2          |         |         |         |         |         |    x    |         |         |         |     |
+| RF3          |         |         |         |         |    x    |         |         |         |         |     |
+| RF4          |         |         |         |    x    |         |         |         |         |         |     |
+| RF5          |         |         |         |         |         |         |         |    x    |         |     |
+| RF6          |         |         |         |         |         |         |    x    |         |         |     |
+| RF7          |         |         |    x    |         |    x    |    x    |         |         |         |     |
+| RF8          |         |         |         |         |         |         |    x    |    x    |    x    |     |
+| RF9          |    x    |    x    |         |    x    |    x    |         |    x    |         |         |     |
 
 # Selección de estilo arquitectónico
 
 Se escogío el estílo n-capas, ya que permite organizar los componentes según el propósito que cumplen y es especialmente
-útil para aplicaciones web. La insfraestructura para el portal web es dinámica porque todas las capas pueden ir en
-un mismo servidor, o cada capa puede ir en diferentes seridores/servicios, ya sea on-premise o en la nube.
+útil para aplicaciones web. La insfraestructura para el portal web es dinámica porque todas las capas van en dispositivos diferentes, ya sea on-premise o en la nube.
 
-En este caso, cada componente será ejectudo por medio de docker compose.
+- Capa presentación: En esta capa irá una aplicación sveltekit
+- Capa lógica:
+    - En esta capa irá una aplicación de Express
+    - Usaremos un servicio externo para el envio de correos
+- Capa datos:
+    - Se utilizará PostgreSQL para la persistencia de datos
+    - Los documentos estáticos como facturas e imágenes irán en un servidor aparte
 
 # Diagrama de bloques
 
-![](./assets/solucion_fase1-bloques_2.png)
+![](./assets/solucion_fase1-bloques_3.png)
 
 # Diagrama de despliegue
+* este es mejor subirlo como .svg porque suele ser grande
 
-![](./assets/solucion_fase1-despliegue_2.png)
+![](./assets/solucion_fase1-despligues_3.svg)
